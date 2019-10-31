@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/myCalc.css">
+    <title>My Calculator</title>
+</head>
+<body>
+    <form class="calc-frame" name="calculator">
+        <table>
+                <tr>
+                    <td><input type="button" id="on" value="On" onclick="changeActive(this);"></td>
+                    <td colspan="3">
+                        <input type="text" name="display" id="display" disabled>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        <input type="button" name="seven" value="7" onclick="appendDisplayValue('7')">
+                    </td>
+                    <td>
+                        <input type="button" name="eight" value="8" onclick="appendDisplayValue('8')">
+                    </td>
+                    <td>
+                        <input type="button" name="nine" value="9" onclick="appendDisplayValue('9')">
+                    </td>
+                    <td>
+                        <input type="button" class="operator" name="plus" value="+" onclick="appendDisplayValue('+')">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" name="four" value="4" onclick="appendDisplayValue('4')">
+                    </td>
+                    <td>
+                        <input type="button" name="five" value="5" onclick="appendDisplayValue('5')">
+                    </td>
+                    <td>
+                        <input type="button" name="six" value="6" onclick="appendDisplayValue('6')">
+                    </td>
+                    <td>
+                        <input type="button" class="operator" name="minus" value="-" onclick="appendDisplayValue('-')">
+                    </td>
+                <tr>
+                    <td>
+                        <input type="button" name="one" value="1" onclick="appendDisplayValue('1')">
+                    </td>
+                    <td>
+                        <input type="button" name="two" value="2" onclick="appendDisplayValue('2')">
+                    </td>
+                    <td>
+                        <input type="button" name="three" value="3" onclick="appendDisplayValue('3')">
+                    </td>              
+                    <td>
+                        <input type="button" class="operator" name="multiply" value="x" onclick="appendDisplayValue('*')">
+                    </td>
+                <tr>
+                    <td>
+                        <input type="button" id="cancel" name="cancel" value="C" onclick="clearAll()">
+                    </td>
+                    <td>
+                        <input type="button" name="zero" value="0" onclick="appendDisplayValue('0')">
+                    </td>
+                    <td>
+                        <input type="button" name="doit" value="=" onclick="calculate()">
+                    </td>
+                    <td>
+                        <input type="button" class="operator" name="divide" value="/" onclick="appendDisplayValue('/')">
+                    </td>
+                </tr>
+        </table>
+    </form>
+    <script>
+        let active = false;
+        let output = document.querySelector("#display");
+        
+        function changeActive(param) {
+            if(active == false) {
+                active = true;
+                output.value = '0';
+                clearAll();
+            } else {
+                active = false;
+                output.value = '';
+            }
+            
+        }
+
+        function calculate() {
+            if(!active) {
+                return;
+            }
+            calculator.display.value = eval(calculator.display.value);
+        
+        }
+
+        function appendDisplayValue(param) {
+            if(!active) {
+                return;
+            }
+            if(output.value == '0') {
+                output.value = '';
+            }
+            calculator.display.value += param;
+        }
+
+        function clearAll() {
+            if(!active) {
+                return;
+            }
+            calculator.display.value = "0";
+        }
+
+    </script>
+</body>
+</html>
